@@ -14,7 +14,7 @@ const reducer = (state = initialState, action) => {
         records: [
           ...state.records,
           {
-            id: state.records.length + 1,
+            id: new Date().getTime(),
             text: action.payload.text,
             completed: false,
           },
@@ -22,10 +22,9 @@ const reducer = (state = initialState, action) => {
       };
 
     case REMOVE_RECORD:
-      const filteredRecords = state.records.filter((record) => record.id !== action.payload.id)
       return {
         ...state,
-        records: filteredRecords
+        records: state.records.filter((record) => record.id !== action.payload.id)
       };
 
     case TOGGLE_STATUS:

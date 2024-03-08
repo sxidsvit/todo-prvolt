@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect, useCallback } from 'react'
+import { useDispatch } from "react-redux";
 
 import { addRecord } from "../storage/actions";
 import { useDebounce } from '../hooks';
@@ -23,7 +23,7 @@ const AddTodoItem = () => {
 
   const handleChange = useCallback((e) => {
     setNewRecord(e.target.value);
-  })
+  }, []);
 
   return (
     <div className="flex gap-3 justify-center p-2">
