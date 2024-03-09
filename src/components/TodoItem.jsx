@@ -49,7 +49,7 @@ const TodoItem = ({ record }) => {
         </div>
       </label>
       <div
-        className="w-8 h-8 min-w-8 flex items-center justify-center bg-white/10 border-solid border-2 rounded-md text-red-500 ml-auto"
+        className="w-8 h-8 min-w-8 flex items-center justify-center bg-white/10 border-solid border-2 rounded-md text-red-500 ml-auto  cursor-pointer"
         onClick={() => handleRemoveRecord(record.id)}>
         <FaTrash />
       </div>
