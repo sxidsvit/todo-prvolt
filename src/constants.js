@@ -1,0 +1,1 @@
+export const N = 40 // constraint on the number of symbols in todo
