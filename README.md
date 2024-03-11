@@ -31,6 +31,53 @@
 - Zod
 - react-icons
 
+#### What is in the branches of this repository
+
+- branch _main_ & branch _rtk-v2_ - The test task has been performed using redux toolkit v.2x
+
+```js
+export const todosSlice = createSlice({
+name: 'todos',
+initialState: {
+  records: getLocalStorage().records || [],
+  filtering: getLocalStorage().filtering || "all",
+},
+reducers: {
+  addRecord: (state, action) => {
+    const newRecord = {
+      id: new Date().getTime(),
+      text: action.payload.newRecord,
+      completed: false,
+    }
+    state.records?.push(newRecord)
+    setLocalStorage(
+      state.records,
+      state.filtering,
+    )
+  },
+  ...
+```
+
+- branch _redux_ - The test task has been performed using classic redux
+
+  ```js
+  const reducer = (state = initialState, action) => {
+  switch (action.type) {
+  case ADD_RECORD:
+  return {
+  ...state,
+  records: [
+  ...state.records,
+  {
+  id: new Date().getTime(),
+  text: action.payload.text,
+  completed: false,
+  },
+  ],
+  };
+  ...
+  ```
+
 ---
 
 ##### Contact with me:
@@ -40,3 +87,7 @@
 [linkedin]: https://www.linkedin.com/in/sergiy-antonyuk/
 
 ##### I can't express how much I have learned from [you](https://www.youtube.com/channel/UCFq12kPZg4wTNPO7V_g3B-A) ! <br> Thanks for the hard and smart work.
+
+```
+
+```
