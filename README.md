@@ -18,7 +18,7 @@
 
 ### ✌️ Completed task
 
-[Live Website](https://sxidsvit-todo-prvolt.vercel.app/)
+[Live Website](https://todo-prvolt-sxidsvit.vercel.app/)
 
 ![](demo.gif)
 
