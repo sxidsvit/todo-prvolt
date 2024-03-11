@@ -4,8 +4,8 @@ import { setLocalStorage, getLocalStorage } from "../utils"
 export const todosSlice = createSlice({
   name: 'todos',
   initialState: {
-    records: getLocalStorage().records,
-    filtering: getLocalStorage().filtering,
+    records: getLocalStorage().records || [],
+    filtering: getLocalStorage().filtering || "all",
   },
   reducers: {
     addRecord: (state, action) => {
