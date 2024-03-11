@@ -11,12 +11,12 @@ const TodoItem = ({ record }) => {
   const handleToggleStatus = useCallback((id) => {
     console.log('handleToggleStatus id: ', id);
     dispatch(toggleStatus({ id }));
-    location.reload();
+    // location.reload();
   }, [dispatch]);
 
   const handleRemoveRecord = useCallback((id) => {
     dispatch(removeRecord({ id }));
-    location.reload();
+    // location.reload();
   }, [dispatch]);
 
   return (
