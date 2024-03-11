@@ -18,7 +18,7 @@ const TodoList = () => {
 
   const filteredRecords = useCallback((filtering) => {
     setActiveFilter(filtering);
-    const result = records.filter((record) => {
+    const result = records?.filter((record) => {
       if (filtering === "all") return true;
       if (filtering === "completed") return record.completed;
       if (filtering === "current") return !record.completed;
