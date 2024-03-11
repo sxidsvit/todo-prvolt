@@ -47,8 +47,9 @@ const AddTodoItem = () => {
     <>
       <div className="min-h-[74px]">
         <div className="flex gap-3 justify-center p-2">
-          <input className="text-gray-800 px-4 rounded-md w-[360px]"
+          <input className="text-gray-800 text-[10px] px-4 rounded-md w-[360px]"
             type="text"
+            placeholder={`Your current TODO.   Text should not be longer ${N} symbols`}
             value={newRecord}
             onChange={handleChange}
           />
@@ -56,7 +57,7 @@ const AddTodoItem = () => {
             className={`buttonTodo ${error ? "text-gray-600 hover:text-gray-600" : ""}`}
             disabled={error}
             onClick={handleAddRecord}>
-            Add Record
+            Add TODO
           </button>
         </div>
         {error && <p className="error text-red-500 text-[10px]">{error}</p>}

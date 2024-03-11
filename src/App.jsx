@@ -7,9 +7,9 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <div className="App pt-[120px]">
+      <main className="App pt-[120px]">
         <TodoList />
-      </div>
+      </main>
     </Provider>
   );
 }
