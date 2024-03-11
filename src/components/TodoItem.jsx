@@ -2,7 +2,7 @@ import { useCallback, } from "react";
 import { useDispatch } from "react-redux";
 import { FaCheck, FaTrash } from 'react-icons/fa';
 
-import { toggleStatus, removeRecord } from "../storage/actions";
+import { toggleStatus, removeRecord } from "../store/todosSlice";
 
 const TodoItem = ({ record }) => {
 
@@ -10,12 +10,12 @@ const TodoItem = ({ record }) => {
 
   const handleToggleStatus = useCallback((id) => {
     console.log('handleToggleStatus id: ', id);
-    dispatch(toggleStatus(id));
+    dispatch(toggleStatus({ id }));
     location.reload();
   }, [dispatch]);
 
   const handleRemoveRecord = useCallback((id) => {
-    dispatch(removeRecord(id));
+    dispatch(removeRecord({ id }));
     location.reload();
   }, [dispatch]);
 

@@ -1,41 +1,44 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setFilter } from "../storage/actions";
+import { setFilter } from "../store/todosSlice";
 import TodoItem from "./TodoItem";
 import AddTodoItem from "./AddTodoItem";
 
 const TodoList = () => {
   const dispatch = useDispatch();
-  const records = useSelector((state) => state.reducer.records);
-  const filter = useSelector((state) => state.reducer.filter);
+  const records = useSelector((state) => state.todos.records);
+  const filtering = useSelector((state) => state.todos.filtering)
+  console.log('useSelector - records: ', records);
+  console.log('useSelector - filtering: ', filtering);
 
   const [filtered, setFiltered] = useState(records);
-  const [activeFilter, setActiveFilter] = useState(filter);
+  const [activeFilter, setActiveFilter] = useState(filtering);
 
   const handleSetFilter = useCallback((selectedFilter) => {
-    dispatch(setFilter(selectedFilter));
+    dispatch(setFilter({ selectedFilter }));
   }, [dispatch]);
 
-  const filteredRecords = useCallback((filter) => {
+  const filteredRecords = useCallback((filtering) => {
+    setActiveFilter(filtering);
+    console.log('filteredRecords - filtering: ', filtering);
     const result = records.filter((record) => {
-      if (filter === "all") return true;
-      if (filter === "completed") return record.completed;
-      if (filter === "current") return !record.completed;
+      if (filtering === "all") return true;
+      if (filtering === "completed") return record.completed;
+      if (filtering === "current") return !record.completed;
     });
     setFiltered(result);
-    handleSetFilter(filter);
-    setActiveFilter(filter);
+    handleSetFilter(filtering);
   }, [records, handleSetFilter]);
 
   useEffect(() => {
-    filteredRecords(filter);
-  }, [filter, filteredRecords]);
+    filteredRecords(filtering);
+  }, [filtering, filteredRecords]);
 
   return (
     <div className="container ">
       <div className="flex  items-center justify-center gap-10 mb-8">
-        <p className="text-green-500">Completed Tasks: {records.filter((r) => r.completed).length}</p>
-        <p className="text-red-500">Uncompleted Tasks: {records.filter((r) => !r.completed).length}</p>
+        <p className="text-green-500">Completed Tasks: {records?.filter((r) => r.completed).length}</p>
+        <p className="text-red-500">Uncompleted Tasks: {records?.filter((r) => !r.completed).length}</p>
       </div>
       <div className="flex gap-2  items-center justify-center gap-2 mb-8 ">
         <button className={`buttonTodo ${activeFilter == 'all' ? "bg-gray-800" : ''}`} onClick={() => filteredRecords("all")}>Show All</button>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useDispatch } from "react-redux";
 import { z } from 'zod'
-import { addRecord } from "../storage/actions";
+import { addRecord } from "../store/todosSlice";
 import { useDebounce } from '../hooks';
 import { N } from '../constants'
 
@@ -23,15 +23,14 @@ const AddTodoItem = () => {
 
   const handleAddRecord = useCallback(() => {
     if (newRecord.trim() !== "") {
-      dispatch(addRecord(newRecord));
-      location.reload();
+
+      console.log('dispatch - newRecord: ', newRecord);
+      dispatch(addRecord({ newRecord }));
+      // location.reload();
       setNewRecord("");
     }
   }, [dispatch, newRecord]);
 
-  // const handleChange = useCallback((e) => {
-  //   setNewRecord(e.target.value);
-  // }, []);
 
   const handleChange = useCallback((e) => {
     const value = e.target.value;
