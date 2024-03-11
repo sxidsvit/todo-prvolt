@@ -48,9 +48,9 @@ const TodoList = () => {
       <AddTodoItem />
 
       <ul className="flex-col gap-2  items-center max-w-[500px] m-auto mt-8 mb-16">
-        {filtered && filtered.length === 0 ?
-          "You don't have any todos" :
-
+        {filtered && filtered.length === 0 &&
+          "You don't have any todos"}
+        {filtered && filtered.length !== 0 &&
           filtered.map((record) => (
             <TodoItem
               key={record.id}
