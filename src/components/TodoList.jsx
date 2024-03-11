@@ -8,8 +8,6 @@ const TodoList = () => {
   const dispatch = useDispatch();
   const records = useSelector((state) => state.todos.records);
   const filtering = useSelector((state) => state.todos.filtering)
-  console.log('useSelector - records: ', records);
-  console.log('useSelector - filtering: ', filtering);
 
   const [filtered, setFiltered] = useState(records);
   const [activeFilter, setActiveFilter] = useState(filtering);
@@ -20,7 +18,6 @@ const TodoList = () => {
 
   const filteredRecords = useCallback((filtering) => {
     setActiveFilter(filtering);
-    console.log('filteredRecords - filtering: ', filtering);
     const result = records.filter((record) => {
       if (filtering === "all") return true;
       if (filtering === "completed") return record.completed;

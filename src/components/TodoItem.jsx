@@ -9,7 +9,6 @@ const TodoItem = ({ record }) => {
   const dispatch = useDispatch();
 
   const handleToggleStatus = useCallback((id) => {
-    console.log('handleToggleStatus id: ', id);
     dispatch(toggleStatus({ id }));
     // location.reload();
   }, [dispatch]);

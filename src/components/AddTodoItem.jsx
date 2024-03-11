@@ -24,7 +24,6 @@ const AddTodoItem = () => {
   const handleAddRecord = useCallback(() => {
     if (newRecord.trim() !== "") {
 
-      console.log('dispatch - newRecord: ', newRecord);
       dispatch(addRecord({ newRecord }));
       // location.reload();
       setNewRecord("");

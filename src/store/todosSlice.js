@@ -23,7 +23,6 @@ export const todosSlice = createSlice({
       state.records = state.records.filter((record) => record.id !== action.payload.id)
     },
     setFilter: (state, action) => {
-      console.log('setFilter - action.payload: ', action.payload);
       state.filtering = action.payload.selectedFilter
     }
   }
