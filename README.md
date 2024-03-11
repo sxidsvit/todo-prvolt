@@ -25,7 +25,7 @@
 #### Used technologies:
 
 - React.js & Vite
-- Redux v.5 (not Redux-ToolKit 😊)
+- Redux v.5 (Redux-ToolKit 😊)
 - redux-persist
 - TailwindCSS
 - Zod
