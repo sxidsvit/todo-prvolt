@@ -14,7 +14,7 @@ export const todosSlice = createSlice({
         text: action.payload.newRecord,
         completed: false,
       }
-      state.records.push(newRecord)
+      state.records?.push(newRecord)
       setLocalStorage(
         state.records,
         state.filtering,
