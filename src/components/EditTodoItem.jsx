@@ -54,7 +54,7 @@ const EditTodoItem = ({ record, setIsEditRecord }) => {
             onChange={handleChange}
           />
           <button
-            className={`buttonTodo  ${error ? "text-gray-600 hover:text-gray-600" : ""}`}
+            className={`buttonTodo max-w-[92px]  ${error ? "text-gray-600 hover:text-gray-600" : ""}`}
             disabled={error}
             onClick={handleEditRecord}>
             Save
