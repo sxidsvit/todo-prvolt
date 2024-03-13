@@ -25,7 +25,7 @@
 #### Used technologies:
 
 - React.js & Vite
-- Redux v.5 (Redux-ToolKit 😊)
+- Redux v.9 (Redux-ToolKit v.2 😊)
 - redux-persist
 - TailwindCSS
 - Zod
@@ -33,7 +33,45 @@
 
 #### What is in the branches of this repository
 
-- branch _main_ & branch _rtk-v2_ - The test task has been performed using redux toolkit v.2x
+- branch _main_ - The test task has been performed using advanced features redux-toolkit v.2
+
+```js
+export const todosSlice = createSlice({
+  name: 'todos',
+
+  initialState: {
+    records: getLocalStorage().records || [],
+    filtering: getLocalStorage().filtering || "all",
+  },
+
+  selectors: {
+    selectRecords: state => state.records,
+    selectFiltering: state => state.filtering
+  },
+
+  reducers: (create) => ({
+    addRecord: create.reducer((state, action) => {
+      const newRecord = {
+        id: new Date().getTime(),
+        text: action.payload.newRecord,
+        completed: false,
+        editing: false
+      }
+      state.records?.push(newRecord)
+      setLocalStorage(
+        state.records,
+        state.filtering,
+      )
+    }),
+    ...
+```
+
+```js
+const records = useSelector(selectRecords);
+const filtering = useSelector(selectFiltering);
+```
+
+- branch _rtk-v2_ - The test task has been performed using redux toolkit
 
 ```js
 export const todosSlice = createSlice({
@@ -86,7 +124,7 @@ reducers: {
 
 [linkedin]: https://www.linkedin.com/in/sergiy-antonyuk/
 
-##### I can't express how much I have learned from [you](https://www.youtube.com/channel/UCFq12kPZg4wTNPO7V_g3B-A) ! <br> Thanks for the hard and smart work.
+##### I can't express how much I have learned from [you](https://www.youtube.com/channel/UCFq12kPZg4wTNPO7V_g3B-A) and [you](https://www.youtube.com/@CodingWithDawid)! <br> Thanks for the hard and smart work.
 
 ```
 

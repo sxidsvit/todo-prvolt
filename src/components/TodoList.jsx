@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setFilter } from "../store/todosSlice";
+import { setFilter, selectFiltering, selectRecords } from "../store/todosSlice";
 import TodoItem from "./TodoItem";
 import AddTodoItem from "./AddTodoItem";
 import EditTodoItem from "./EditTodoItem"
 
 const TodoList = () => {
   const dispatch = useDispatch();
-  const records = useSelector((state) => state.todos.records);
-  const filtering = useSelector((state) => state.todos.filtering)
+  const records = useSelector(selectRecords);
+  const filtering = useSelector(selectFiltering)
 
   const [filtered, setFiltered] = useState(records);
   const [activeFilter, setActiveFilter] = useState(filtering);
