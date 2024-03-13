@@ -12,7 +12,6 @@ const TodoList = () => {
 
   const [filtered, setFiltered] = useState(records);
   const [activeFilter, setActiveFilter] = useState(filtering);
-  const [isEditRecord, setIsEditRecord] = useState(false);
 
   const handleSetFilter = useCallback((selectedFilter) => {
     dispatch(setFilter({ selectedFilter }));
@@ -58,12 +57,10 @@ const TodoList = () => {
               <EditTodoItem
                 key={record.id}
                 record={record}
-                setIsEditRecord={setIsEditRecord}
               />) : (
               <TodoItem
                 key={record.id}
                 record={record}
-                setIsEditRecord={setIsEditRecord}
               />
             )
           ))

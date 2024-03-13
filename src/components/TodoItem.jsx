@@ -4,7 +4,7 @@ import { FaCheck, FaTrash, FaEdit } from 'react-icons/fa';
 
 import { toggleStatus, removeRecord, setEditing } from "../store/todosSlice";
 
-const TodoItem = ({ record, setIsEditRecord }) => {
+const TodoItem = ({ record }) => {
 
   const dispatch = useDispatch();
 

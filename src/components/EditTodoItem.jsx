@@ -19,14 +19,10 @@ const EditTodoItem = ({ record, setIsEditRecord }) => {
   const dispatch = useDispatch();
   const debouncedValue = useDebounce(editedRecord);
 
-  useEffect(() => {
-  }, [debouncedValue])
-
   const handleEditRecord = useCallback(() => {
     if (editedRecord.trim() !== "") {
 
       dispatch(editRecord({ editedRecord, id: record.id }));
-      setIsEditRecord(false);
     }
   }, [dispatch, editedRecord]);
 
