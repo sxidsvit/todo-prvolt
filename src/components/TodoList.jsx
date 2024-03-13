@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setFilter } from "../store/todosSlice";
 import TodoItem from "./TodoItem";
 import AddTodoItem from "./AddTodoItem";
+import EditTodoItem from "./EditTodoItem"
 
 const TodoList = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const TodoList = () => {
 
   const [filtered, setFiltered] = useState(records);
   const [activeFilter, setActiveFilter] = useState(filtering);
+  const [isEditRecord, setIsEditRecord] = useState(false);
 
   const handleSetFilter = useCallback((selectedFilter) => {
     dispatch(setFilter({ selectedFilter }));
@@ -52,10 +54,18 @@ const TodoList = () => {
           "You don't have any todos"}
         {filtered && filtered.length !== 0 &&
           filtered.map((record) => (
-            <TodoItem
-              key={record.id}
-              record={record}
-            />
+            record.editing ? (
+              <EditTodoItem
+                key={record.id}
+                record={record}
+                setIsEditRecord={setIsEditRecord}
+              />) : (
+              <TodoItem
+                key={record.id}
+                record={record}
+                setIsEditRecord={setIsEditRecord}
+              />
+            )
           ))
         }
       </ul>

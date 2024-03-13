@@ -6,6 +6,7 @@ export const todosSlice = createSlice({
   initialState: {
     records: getLocalStorage().records || [],
     filtering: getLocalStorage().filtering || "all",
+    editing: getLocalStorage().editing || "false",
   },
   reducers: {
     addRecord: (state, action) => {
@@ -13,11 +14,13 @@ export const todosSlice = createSlice({
         id: new Date().getTime(),
         text: action.payload.newRecord,
         completed: false,
+        editing: false,
       }
       state.records?.push(newRecord)
       setLocalStorage(
         state.records,
         state.filtering,
+        state.editing,
       )
     },
     toggleStatus: (state, action) => {
@@ -26,13 +29,37 @@ export const todosSlice = createSlice({
       setLocalStorage(
         state.records,
         state.filtering,
+        state.editing,
       )
     },
+    editRecord: (state, action) => {
+      const toggledTodo = state.records.find(record => record.id === action.payload.id);
+      toggledTodo.text = action.payload.editedRecord;
+      toggledTodo.editing = false;
+
+      setLocalStorage(
+        state.records,
+        state.filtering,
+        state.editing,
+      )
+    },
+    setEditing: (state, action) => {
+      const editedTodo = state.records.find(record => record.id === action.payload.id);
+      editedTodo.editing = 'true';
+      setLocalStorage(
+        state.records,
+        state.filtering,
+        state.editing,
+      )
+    },
+
+
     removeRecord: (state, action) => {
       state.records = state.records.filter((record) => record.id !== action.payload.id)
       setLocalStorage(
         state.records,
         state.filtering,
+        state.editing,
       )
     },
     setFilter: (state, action) => {
@@ -40,11 +67,12 @@ export const todosSlice = createSlice({
       setLocalStorage(
         state.records,
         state.filtering,
+        state.editing,
       )
     }
   }
 })
 
-export const { addRecord, removeRecord, toggleStatus, setFilter } = todosSlice.actions
+export const { addRecord, editRecord, removeRecord, toggleStatus, setFilter, setEditing } = todosSlice.actions
 
 export default todosSlice.reducer

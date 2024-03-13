@@ -1,29 +1,31 @@
 import { useCallback, } from "react";
 import { useDispatch } from "react-redux";
-import { FaCheck, FaTrash } from 'react-icons/fa';
+import { FaCheck, FaTrash, FaEdit } from 'react-icons/fa';
 
-import { toggleStatus, removeRecord } from "../store/todosSlice";
+import { toggleStatus, removeRecord, setEditing } from "../store/todosSlice";
 
-const TodoItem = ({ record }) => {
+const TodoItem = ({ record, setIsEditRecord }) => {
 
   const dispatch = useDispatch();
 
   const handleToggleStatus = useCallback((id) => {
     dispatch(toggleStatus({ id }));
-    // location.reload();
   }, [dispatch]);
+
 
   const handleRemoveRecord = useCallback((id) => {
     dispatch(removeRecord({ id }));
-    // location.reload();
+  }, [dispatch]);
+
+  const handleEditStatus = useCallback((id) => {
+    dispatch(setEditing({ id }));
   }, [dispatch]);
 
   return (
-    <div className=" flex items-center p-2 mb-4  border-2 rounded-xl border-white/20">
+    <div className="listItem">
       <label
         className="flex gap-2  cursor-pointer"
         key={record.id}
-      // onChange={() => handleToggleStatus(record.id)}
       >
 
         <input
@@ -47,12 +49,20 @@ const TodoItem = ({ record }) => {
           </span>
         </div>
       </label>
-      <div
-        className="w-8 h-8 min-w-8 flex items-center justify-center bg-white/10 border-solid border-2 rounded-md text-red-500 ml-auto  cursor-pointer"
-        onClick={() => handleRemoveRecord(record.id)}>
-        <FaTrash />
+      <div className="flex gap-2 ml-auto">
+        <div
+          className="w-8 h-8 min-w-8 flex items-center justify-center bg-white/10 border-solid border-2 rounded-md text-white
+          -500 ml-auto  cursor-pointer"
+          onClick={() => handleEditStatus(record.id)}>
+          <FaEdit />
+        </div>
+        <div
+          className="w-8 h-8 min-w-8 flex items-center justify-center bg-white/10 border-solid border-2 rounded-md text-red-500 ml-auto  cursor-pointer"
+          onClick={() => handleRemoveRecord(record.id)}>
+          <FaTrash />
+        </div>
       </div>
-    </div>
+    </div >
   )
 }
 
