@@ -1,13 +1,12 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { useDispatch } from "react-redux";
 import { z } from 'zod'
 import { editRecord } from "../store/todosSlice";
 
-import { useDebounce } from '../hooks';
 import { N } from '../constants'
 
 
-const EditTodoItem = ({ record, setIsEditRecord }) => {
+const EditTodoItem = ({ record }) => {
 
   const [editedRecord, setEditedRecord] = useState(record.text);
   const [error, setError] = useState(null);
@@ -17,14 +16,13 @@ const EditTodoItem = ({ record, setIsEditRecord }) => {
   });
 
   const dispatch = useDispatch();
-  const debouncedValue = useDebounce(editedRecord);
 
   const handleEditRecord = useCallback(() => {
     if (editedRecord.trim() !== "") {
 
       dispatch(editRecord({ editedRecord, id: record.id }));
     }
-  }, [dispatch, editedRecord]);
+  }, [dispatch, editedRecord, record.id]);
 
 
   const handleChange = useCallback((e) => {

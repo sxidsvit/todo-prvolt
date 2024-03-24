@@ -5,6 +5,7 @@ import TodoItem from "./TodoItem";
 import AddTodoItem from "./AddTodoItem";
 import EditTodoItem from "./EditTodoItem"
 
+// eslint-disable-next-line react-refresh/only-export-components
 const TodoList = () => {
   const dispatch = useDispatch();
   const records = useSelector(selectRecords);
@@ -73,4 +74,5 @@ const TodoList = () => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export default React.memo(TodoList);
