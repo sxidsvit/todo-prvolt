@@ -22,7 +22,7 @@ export const todosSlice = createSlice({
         completed: false,
         editing: false
       }
-      state.records?.push(newRecord)
+      state.records?.unshift(newRecord)
       setLocalStorage(
         state.records,
         state.filtering,
