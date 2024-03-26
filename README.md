@@ -116,6 +116,42 @@ reducers: {
   ...
   ```
 
+- branch _gsap_ - [GSAP](https://gsap.com/) animation added
+
+```js
+  useGSAP(() => {
+    gsap.from(["#completed-task", "#uncompleted-task"], {
+      x: 0,
+      duration: 1,
+      opacity: 0,
+      ease: "power1.inOut",
+      delay: 1.5,
+    });
+  });
+
+  useEffect(() => {
+    const tl = gsap.timeline();
+    gsap.set("#todo-list > .listItem", { opacity: 0 });
+    filtered.forEach((todo, index) => {
+      tl.fromTo(`#todo-list >.listItem:nth-child(${index + 1})`, {
+        y: -25,
+        opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.3,
+        ease: "power1.inOut",
+        delay: index * 0.1,
+      });
+    });
+    tl.play();
+    window.addEventListener("beforeunload", () => {
+      tl.restart();
+    });
+  }, [filtered]);
+ ...
+```
+
 ---
 
 ##### Contact with me:
